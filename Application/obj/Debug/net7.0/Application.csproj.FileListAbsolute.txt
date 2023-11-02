@@ -1,0 +1,34 @@
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\bin\Debug\net7.0\Application.deps.json
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\bin\Debug\net7.0\Application.runtimeconfig.json
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\bin\Debug\net7.0\Application.dll
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\bin\Debug\net7.0\Application.pdb
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\bin\Debug\net7.0\Domain.dll
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\bin\Debug\net7.0\Domain.pdb
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.csproj.AssemblyReference.cache
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.AssemblyInfoInputs.cache
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.AssemblyInfo.cs
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.csproj.CopyComplete
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.dll
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\refint\Application.dll
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.pdb
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\Application.genruntimeconfig.cache
+C:\Users\AL-FARABI\Desktop\projects C#\Application\Application\obj\Debug\net7.0\ref\Application.dll
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\bin\Debug\net7.0\Application.deps.json
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\bin\Debug\net7.0\Application.runtimeconfig.json
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\bin\Debug\net7.0\Application.dll
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\bin\Debug\net7.0\Application.pdb
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\bin\Debug\net7.0\Domain.dll
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\bin\Debug\net7.0\Domain.pdb
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.csproj.AssemblyReference.cache
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.AssemblyInfoInputs.cache
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.AssemblyInfo.cs
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.csproj.CopyComplete
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.dll
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\refint\Application.dll
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.pdb
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\Application.genruntimeconfig.cache
+C:\Users\AL-FARABI\Desktop\projects C#\ELKood Backend Task\Application\obj\Debug\net7.0\ref\Application.dll
