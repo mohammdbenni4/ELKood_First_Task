@@ -142,6 +142,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             var dislog = await _context.DistributionLogs.SingleOrDefaultAsync(x=>x.Id==model.Id);
             transaction.DistributionLog = dislog;
+             LastTranFromBrunch.NewAmountInThisBrunch -= model.Amount;
             await _context.SaveChangesAsync();
             return model;
         }
