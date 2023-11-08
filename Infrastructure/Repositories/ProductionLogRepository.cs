@@ -87,20 +87,26 @@ namespace Infrastructure.Repositories
             };
 
             var transactionsAfter = await _context.Transactions.Where(x => x.Date >= model.DateOfCreate && x.BrunchId == b.Id).ToListAsync();
+            var transactions = await _context.Transactions.Where(x => x.Date <= model.DateOfCreate && x.BrunchId == b.Id).ToListAsync();
+            
             var LastTranFromBrunch = new Transaction();
             if (transactionsAfter.Any())
             {
                 for (int i = 0; i < transactionsAfter.Count(); i++)
                     transactionsAfter[i].NewAmountInThisBrunch += model.Amount;
 
-                LastTranFromBrunch = transactionsAfter.
-                  OrderBy(x => Math.Abs((model.DateOfCreate - x.Date).TotalMilliseconds))
-                  .First();
+                if (transactions.Any())
+                {
+                    LastTranFromBrunch = transactions.
+                      OrderBy(x => Math.Abs((model.DateOfCreate - x.Date).TotalMilliseconds))
+                      .First();
+
+                }
 
             }
             
             int curAmount = 0;
-            if (transactionsAfter.Any()) curAmount = LastTranFromBrunch.NewAmountInThisBrunch;
+            if (transactions.Any()) curAmount = LastTranFromBrunch.NewAmountInThisBrunch;
 
             var transaction = new Transaction
             {
