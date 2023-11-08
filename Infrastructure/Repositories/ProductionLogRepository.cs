@@ -1,4 +1,4 @@
-﻿using Application.Features.ProductionLog.Commands.CreateProductionLog;
+using Application.Features.ProductionLog.Commands.CreateProductionLog;
 using Application.Features.ProductionLog.Queries.GetProductionLogsBetweenTwoDates;
 using Application.Interfaces;
 using Domain;
@@ -86,17 +86,21 @@ namespace Infrastructure.Repositories
                 BrunchId = b.Id,
             };
 
-            var transactions = await _context.Transactions.Where(x => x.Date <= model.DateOfCreate && x.BrunchId == b.Id).ToListAsync();
+            var transactionsAfter = await _context.Transactions.Where(x => x.Date >= model.DateOfCreate && x.BrunchId == b.Id).ToListAsync();
             var LastTranFromBrunch = new Transaction();
-
-            if (transactions.Any())
+            if (transactionsAfter.Any())
             {
-                 LastTranFromBrunch = transactions.
-                    OrderBy(x => Math.Abs((model.DateOfCreate - x.Date).TotalMilliseconds))
-                    .First();
+                for (int i = 0; i < transactionsAfter.Count(); i++)
+                    transactionsAfter[i].NewAmountInThisBrunch += model.Amount;
+
+                LastTranFromBrunch = transactionsAfter.
+                  OrderBy(x => Math.Abs((model.DateOfCreate - x.Date).TotalMilliseconds))
+                  .First();
+
             }
-            int curAmount =0;
-            if (transactions.Any()) curAmount = LastTranFromBrunch.NewAmountInThisBrunch;
+            
+            int curAmount = 0;
+            if (transactionsAfter.Any()) curAmount = LastTranFromBrunch.NewAmountInThisBrunch;
 
             var transaction = new Transaction
             {
