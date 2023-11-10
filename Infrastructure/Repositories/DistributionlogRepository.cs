@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Collections.Generic;
 namespace Infrastructure.Repositories
 {
     public class DistributionLogRepository : IDistributionLogRepository
@@ -71,9 +71,11 @@ namespace Infrastructure.Repositories
 
             if (transactions.Any())
             {
-                LastTranFromBrunch = transactions.
-                   OrderBy(x => Math.Abs((model.Date - x.Date).TotalMilliseconds))
-                   .First();
+                transactions.Sort((a,b)=>a.Date.CompareTo(b.Date));
+                  
+
+                LastTranFromBrunch = transactions[transactions.Count-1];
+                   
             }
             int curAmount = 0;
             if (transactions.Any()) curAmount = LastTranFromBrunch.NewAmountInThisBrunch;
@@ -128,9 +130,9 @@ namespace Infrastructure.Repositories
             };
 
           
-            var transactionsAfter = await _context.Transactions.Where(x => x.Date > model.Date && x.BrunchId == mainBr.Id).ToListAsync();
+            var transactionsAfter = await _context.Transactions.Where(x => x.Date > model.Date && x.BrunchId == mainBr.Id&&x.DistributionLogId==null).ToListAsync();
            
-            if (transactions.Any())
+            if (transactions.Any()) 
             {
                 for (int i = 0;i<transactionsAfter.Count;i++)
                     transactionsAfter[i].NewAmountInThisBrunch -= model.Amount;
@@ -143,24 +145,25 @@ namespace Infrastructure.Repositories
             var dislog = await _context.DistributionLogs.SingleOrDefaultAsync(x=>x.Id==model.Id);
             transaction.DistributionLog = dislog;
 
-            transactions.
-                   OrderBy(x => Math.Abs((model.Date - x.Date).TotalMilliseconds));
+           
 
-            int cur = 0,j=transactions.Count-1;
-            while (cur < model.Amount && j >=0) 
+            int cur = 0;
+         
+
+            for(int i=transactions.Count-1;i>=0 ; i--)
             {
-                if (cur + transactions[j].TransAmount <= model.Amount)
+                if (cur == model.Amount) break;
+                if (cur + transactions[i].TransAmount <= model.Amount)
                 {
-                    cur += transactions[j].TransAmount;
-                    transactions[j].TransAmount = 0;
+                    cur += transactions[i].TransAmount;
+                    transactions[i].TransAmount = 0;
                 }
                 else
                 {
-                    transactions[j].TransAmount -= (model.Amount - cur);
+                    transactions[i].TransAmount -= (model.Amount - cur);
                     cur = model.Amount;
-                    
+
                 }
-                j--;
             }
 
             cur = 0;
