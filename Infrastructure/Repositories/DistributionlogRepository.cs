@@ -1,4 +1,4 @@
-﻿using Application.Features.DistributionLog.Commands.CreateDistributionLog;
+using Application.Features.DistributionLog.Commands.CreateDistributionLog;
 using Application.Interfaces;
 using Domain;
 using MediatR;
@@ -66,7 +66,7 @@ namespace Infrastructure.Repositories
             if (!ok3) { model.Message = "There is no secondary brunch under this name in this company !"; return model; }
 
 
-            var transactions = await _context.Transactions.Where(x => x.Date <= model.Date && x.BrunchId == mainBr.Id).ToListAsync();
+            var transactions = await _context.Transactions.Where(x => x.Date <= model.Date && x.BrunchId == mainBr.Id&&x.DistributionLogId==null).ToListAsync();
             var LastTranFromBrunch = new Transaction();
 
             if (transactions.Any())
@@ -85,7 +85,7 @@ namespace Infrastructure.Repositories
                 Id = Guid.NewGuid().ToString(),
                 Date = model.Date,
                 TransAmount = model.Amount,
-                NewAmountInThisBrunch = curAmount - model.Amount,
+                NewAmountInThisBrunch =  model.Amount,
                 Brunch = mainBr,
                 BrunchId = mainBr.Id,
                 DistributionLogId = model.Id
@@ -142,7 +142,35 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             var dislog = await _context.DistributionLogs.SingleOrDefaultAsync(x=>x.Id==model.Id);
             transaction.DistributionLog = dislog;
-             LastTranFromBrunch.NewAmountInThisBrunch -= model.Amount;
+
+            transactions.
+                   OrderBy(x => Math.Abs((model.Date - x.Date).TotalMilliseconds));
+
+            int cur = 0,j=transactions.Count-1;
+            while (cur < model.Amount && j >=0) 
+            {
+                if (cur + transactions[j].TransAmount <= model.Amount)
+                {
+                    cur += transactions[j].TransAmount;
+                    transactions[j].TransAmount = 0;
+                }
+                else
+                {
+                    transactions[j].TransAmount -= (model.Amount - cur);
+                    cur = model.Amount;
+                    
+                }
+                j--;
+            }
+
+            cur = 0;
+            for (int i = 0;i<transactions.Count;i++)
+            {
+                cur += transactions[i].TransAmount;
+                transactions[i].NewAmountInThisBrunch = cur;
+            }
+
+
             await _context.SaveChangesAsync();
             return model;
         }
