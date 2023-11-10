@@ -100,9 +100,9 @@ namespace Infrastructure.Repositories
             }
             if (transactions.Any())
             {
-                LastTranFromBrunch = transactions.
-                  OrderBy(x => Math.Abs((model.DateOfCreate - x.Date).TotalMilliseconds))
-                  .First();
+                transactions.Sort((a, b) => a.Date.CompareTo(b.Date));
+                LastTranFromBrunch = transactions[transactions.Count - 1];
+                  
 
             }
 
