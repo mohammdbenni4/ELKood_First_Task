@@ -86,8 +86,8 @@ namespace Infrastructure.Repositories
                 BrunchId = b.Id,
             };
 
-            var transactionsAfter = await _context.Transactions.Where(x => x.Date >= model.DateOfCreate && x.BrunchId == b.Id).ToListAsync();
-            var transactions = await _context.Transactions.Where(x => x.Date <= model.DateOfCreate && x.BrunchId == b.Id).ToListAsync();
+            var transactionsAfter = await _context.Transactions.Where(x => x.Date >= model.DateOfCreate && x.BrunchId == b.Id && x.DistributionLogId==null).ToListAsync();
+            var transactions = await _context.Transactions.Where(x => x.Date <= model.DateOfCreate && x.BrunchId == b.Id&&x.DistributionLogId==null).ToListAsync();
             
             var LastTranFromBrunch = new Transaction();
             if (transactionsAfter.Any())
