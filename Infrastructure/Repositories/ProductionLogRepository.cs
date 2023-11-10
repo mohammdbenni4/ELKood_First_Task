@@ -95,16 +95,17 @@ namespace Infrastructure.Repositories
                 for (int i = 0; i < transactionsAfter.Count(); i++)
                     transactionsAfter[i].NewAmountInThisBrunch += model.Amount;
 
-                if (transactions.Any())
-                {
-                    LastTranFromBrunch = transactions.
-                      OrderBy(x => Math.Abs((model.DateOfCreate - x.Date).TotalMilliseconds))
-                      .First();
-
-                }
+               
 
             }
-            
+            if (transactions.Any())
+            {
+                LastTranFromBrunch = transactions.
+                  OrderBy(x => Math.Abs((model.DateOfCreate - x.Date).TotalMilliseconds))
+                  .First();
+
+            }
+
             int curAmount = 0;
             if (transactions.Any()) curAmount = LastTranFromBrunch.NewAmountInThisBrunch;
 
